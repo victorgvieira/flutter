@@ -1,0 +1,38 @@
+Flutter
+
+The Basics
+ - void main() é o método principal que fica na classe principal, vai rodar por default quando a aplicação é iniciada;
+ - var cria uma variável do tipo que o valor à direita é assinalado
+    ex: var nome = 'Antonio'; // String
+        var idade = 19; //int
+        var pessoa = Person(); // Person
+    TIP: é boa prática usar 'var' ao invés do tipo (int, String, double, etc...) se o valor já estiver definido na criação
+      ex: int idade = 19; //NOT GOOD
+          int idade; ...if(true)..idade = 19; //OK
+
+    class Person {
+      String name;
+      int age;
+
+      // Opção 1
+      Person({@required String name, int age = 20}){
+          this.name = name;
+          this.age = age;
+      }
+
+      // Opção 2
+      // Pode ser criado parâmetros com o mesmo nome das variáveis da classe
+      // Nesse caso o valor é setado diretamente e não precisa do corpo do construtor
+      Person({@required this.name, this.age = 20});
+    }
+
+    void main(){
+      var p1 = Person(age: 30, name: 'Max');
+    }
+
+construtor/função
+  - Entre '{}' quer dizer que são opcionais e tem que ser nomeados ao new;
+  - @required quer dizer not null, mesmo se tiver dentro de '{}':
+  - age = 20 inicia a variável se não for passada ao instanciar;
+  - Instanciar Person(age: 30, name: 'Max') da nome aos parâmetros sem precisar se importar com a ordem;
+
