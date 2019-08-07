@@ -10,29 +10,96 @@ The Basics
       ex: int idade = 19; //NOT GOOD
           int idade; ...if(true)..idade = 19; //OK
 
+
+    import 'package:flutter/material.dart';
+    
     class Person {
       String name;
       int age;
 
       // Opção 1
-      Person({@required String name, int age = 20}){
-          this.name = name;
-          this.age = age;
+      // Person(nameQualquer:"Jose", ageQualquer: 30) Person(nameQualquer:"Jose")
+      Person({@required String nameQualquer, int ageQualquer = 20}){
+          this.name = nameQualquer;
+          this.age = ageQualquer;
       }
 
       // Opção 2
       // Pode ser criado parâmetros com o mesmo nome das variáveis da classe
       // Nesse caso o valor é setado diretamente e não precisa do corpo do construtor
+      // Person(name:"Jose", age:30) Person(name:"Jose")
       Person({@required this.name, this.age = 20});
+
+      // Opção 3
+      // Construtores podem ser nomeados, ex se quiser um dado predefinido
+      // Person("Jose")
+      Person.veryOld(this.name){
+        this.age = 60
+      }
     }
 
     void main(){
       var p1 = Person(age: 30, name: 'Max');
     }
+    // Roda se o método tiver somente uma linha de execução
+    void main() => runApp();
+
+    class MyApp extends StatelessWidget {
+      @override
+      Widget build(BuildContext context){
+        return MaterialApp(home: Scaffold(
+            appBar: AppBar(
+                title: Text("My App");
+            ),
+            // <Widget> pode ser omitido
+            body: Column(children: <Widget>[]) 
+          )
+        )
+      }
+    }
+
+
+'
+TUDO EM DART É OBJETO
 
 construtor/função
   - Entre '{}' quer dizer que são opcionais e tem que ser nomeados ao new;
   - @required quer dizer not null, mesmo se tiver dentro de '{}':
   - age = 20 inicia a variável se não for passada ao instanciar;
   - Instanciar Person(age: 30, name: 'Max') da nome aos parâmetros sem precisar se importar com a ordem;
+
+The build() returns a so-called "widget tree" which tells Flutter what to draw onto the screen.
+Widget
+  - Flutter is all about buildings apps and for that, you need user interfaces. You build these user interfaces with Widgets => The core UI building blocks.
+  - Widgets are your core UI building block.
+  - Widgets are just Dart objects. They need to extend StatelessWidget or StatefulWidget though (and implement a build() method).
+  - Most Widgets have some (named) arguments that require another Widget - e.g. the "children" argument on the Column() constructor. Or "child" on Container().
+
+  - Scaffold da a aparência pixelada padrão de um aplicativo 
+  - body recebe somente um Widget
+
+  - Visíveis: Output e Input (Button, TextView, EditText): o que o usuário vê;
+  - Invisíveis - Layout e Control (Column, Row, ListView): estrutura e controla como os widgets são desenhados
+  - Container - Pertecem aos dois grupos;
+
+  - "Input Data" (also: "External Data) and "Internal Data" in a Widget;
+  - All widgets (i.e. both Stateless and Stateful) can receive data via their constructors. But only StatefulWidgets can have class properties where they can update values + re-run build().
+
+  - Stateless - pode receber dados no construtor, mas, depois de criado SOMENTE ATUALIZA SE O INPUTDATA MUDAR;
+    - Whilst you can add (and also change) properties in a StatelessWidget, there\'s no way of telling Flutter that it should re-run build() upon such changes.
+
+  - Stateful - pode receber dados no construtor, e rebuilda o widget quando esse dado ou o estado interno do widget mudar;
+    - The data / property value changes even without setState(). But the screen won\'t reflect that change;
+    - setState() is a "trigger" that informs Flutter that it needs to re-run build() of the Widget;
+    - Usa a classe State<T> para definir qual o Widget criado;
+    - Tem que implementar o metodo createState() e retornar a classe State<T> criada;
+
+  OPA: O rebuild não recria todos os widgets indiscriminadamente, ao invés, o flutter usa mecanismos para descobrir o 
+  que mudou naquele widget e atualizar;
+
+
+  - Container: como se fosse um LinearLayout: child -> padding -> border -> margin
+
+
+
 
