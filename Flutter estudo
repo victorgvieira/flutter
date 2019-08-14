@@ -100,6 +100,12 @@ Widget
 
   - Container: como se fosse um LinearLayout: child -> padding -> border -> margin
 
+  *The leading "_" marks a class, property or method as private, which means that you can only use it in the same library. Typically, a file is treated as a separate library.
+  *You can have more than one constructor in your Dart classes. Extra constructors typically yield you differently configured objects of the same type.
+  *Maps are basically like Lists without number indexes but custom indexes (keys).
+  *map() returns a new iterable (which is transformed to a list via toList()) where each value of the original list (names) is transformed as "described" by the function you pass to map
+  *FINAL At RUNTIME, an initial, dynamic value can be assigned, thereafter, the property / variable can\'t be changed again.
+  *CONST At COMPILETIME, the property variable must be initialized and can\'t be changed again.
 
 
 
